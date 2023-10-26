@@ -1,10 +1,14 @@
 <template>
-
-<div v-for="(el) in plData.classes" :key="el">
+<div class="loading" v-if="load">Загрузка</div>
+<div v-else>
+<div class=wrapper>
+<div class="data" v-for="(el) in plData.classes" :key="el">
   <div> <b>Class: </b>{{el}}</div>
 </div>
-<div v-for="(el) in plData.races" :key="el">
+<div class="data" v-for="(el) in plData.races" :key="el">
   <div> <b>Race: </b>{{el}}</div>
+</div>
+</div>
 </div>
 </template>
 
@@ -14,7 +18,8 @@ export default {
   name: 'TheApi',
   data(){
     return {
-      plData: []
+	    plData: [],
+	    load: true
     }
   },
 
@@ -34,6 +39,7 @@ const options = {
   .then((res) => {
     console.log(res);
     this.plData=res
+this.load=false
   })
 
   },
@@ -42,6 +48,19 @@ const options = {
 }
 </script>
 
-<style>
 
+<style>
+.wrapper {
+ display: flex;
+ justify-content: center;
+}
+
+.loading{
+
+}
+
+.data{
+ background-color: gray;
+ 
+	
 </style>
